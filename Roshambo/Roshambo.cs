@@ -5,7 +5,8 @@ namespace Roshambo
     {
         Rock,
         Paper,
-        Scissors
+        Scissors,
+        InValid
 
     }
 }

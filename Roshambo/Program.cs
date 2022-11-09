@@ -2,10 +2,8 @@
 using Roshambo;
 HumanPlayer playerOne = new HumanPlayer();
 HumanPlayer playerTwo = new HumanPlayer();
-RandomPlayer randy = new RandomPlayer();
-RockPlayer rocky = new RockPlayer();
-rocky.Name = "Rocky";
-randy.Name = "Randy";
+RandomPlayer randy = new RandomPlayer("Randy");
+RockPlayer rocky = new RockPlayer("Rocky");
 int pOneWinCounter = 0;
 int pTwoWinCounter = 0;
 
@@ -37,28 +35,27 @@ void SetGame()
         {
             case "rocky":
                 playerOne.GenerateRoshambo();
+                rocky.GenerateRoshambo();
                 Play(playerOne, rocky);
                 break;
             case "randy":
                 playerOne.GenerateRoshambo();
+                randy.GenerateRoshambo();
                 Play(playerOne, randy);
                 break;
             default:
                 playerTwo.Name = opponent;
+                Console.WriteLine($"{playerOne.Name}:");
                 playerOne.GenerateRoshambo();
+                Console.WriteLine($"{playerTwo.Name}:");
                 playerTwo.GenerateRoshambo();
                 Play(playerOne, playerTwo);
                 break;      
         }
 
-        Console.WriteLine("would you like to play again Y/N");
-        string playInput = Console.ReadLine().ToLower();
+        playAgain = Validator.GetYN();
 
-        if (playInput == "y" || playInput == "yes")
-        {
-            playAgain = true;
-        }
-        else
+        if (!playAgain)
         {
             Console.WriteLine("Thank you for playing");
             Console.WriteLine($"The final socore is:");
@@ -66,18 +63,15 @@ void SetGame()
             Console.WriteLine($"{opponent}: {pTwoWinCounter}");
             break;
         }
-
     }
-    
-
 }
 
  void Play(Player firstPlayer, Player secondPlayer)
 {
-    string pOneName = playerOne.Name;
+    string pOneName = firstPlayer.Name;
     string pTwoName = secondPlayer.Name;
-    Roshambo.Roshambo pOneValue = playerOne.Value;
-    Roshambo.Roshambo pTwoValue = playerTwo.Value;
+    Roshambo.Roshambo pOneValue = firstPlayer.Value;
+    Roshambo.Roshambo pTwoValue = secondPlayer.Value;
 
     Roshambo.Roshambo rock = Roshambo.Roshambo.Rock;
     Roshambo.Roshambo paper = Roshambo.Roshambo.Paper;
@@ -97,12 +91,16 @@ void SetGame()
                 Console.WriteLine($"{pTwoValue} beats {pOneValue} {pOneName} wins");
                 pTwoWinCounter++;
             }
-            else
+            else if (pTwoValue == scissors)
             {
                 Console.WriteLine($"{pOneName}: {pOneValue}");
                 Console.WriteLine($"{pTwoName}: {pTwoValue}");
                 Console.WriteLine($"{pTwoValue} beats {pOneValue} {pTwoName} wins");
                 pTwoWinCounter++;
+            }
+            else
+            {
+                Console.WriteLine("invalid input");
             }
             break;
         case Roshambo.Roshambo.Paper:
@@ -117,12 +115,16 @@ void SetGame()
                 Console.WriteLine($"{pTwoValue} beats {pOneValue} {pTwoName} wins");
                 pTwoWinCounter++;
             }
-            else
+            else if (pTwoValue == rock)
             {
                 Console.WriteLine($"{pOneName}: {pOneValue}");
                 Console.WriteLine($"{pTwoName}: {pTwoValue}");
                 Console.WriteLine($"{pOneValue} beats {pTwoValue} {pOneName} wins");
                 pOneWinCounter++;
+            }
+            else
+            {
+                Console.WriteLine("invalid input");
             }
             break;
         case Roshambo.Roshambo.Scissors:
@@ -137,17 +139,20 @@ void SetGame()
                 Console.WriteLine($"{pTwoValue} beats {pOneValue} {pTwoName} wins");
                 pTwoWinCounter++;
             }
-            else
+            else if (pTwoValue == paper)
             {
                 Console.WriteLine($"{pOneName}: {pOneValue}");
                 Console.WriteLine($"{pTwoName}: {pTwoValue}");
                 Console.WriteLine($"{pOneValue} beats {pTwoValue} {pOneName} wins");
                 pOneWinCounter++;
             }
+            else
+            {
+                Console.WriteLine("invalid input");
+            }
             break;
-
+            
     }
-
 }
 
    

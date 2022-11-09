@@ -5,26 +5,33 @@ namespace Roshambo
     {
         public override Roshambo GenerateRoshambo()
         {
-        
-       
+
+
             // Prompt the user for for an entry
             Console.WriteLine("Please enter R P S ");
-            string input = Console.ReadLine().ToLower();
+            string input = Console.ReadLine();
+            
             if (input == "r"|| input =="rock")
             {
                 Value = Roshambo.Rock;
-                return Roshambo.Rock;
+                return Value;
             }
             else if (input == "p"|| input == "paper")
             {
                 Value = Roshambo.Paper;
-                return Roshambo.Paper;
+                return Value;
+            }
+            else if (input == "s" || input == "scissors")
+            {
+                Value = Roshambo.Scissors;
+                return Value;
             }
             else
             {
-                Value = Roshambo.Scissors;
-                return Roshambo.Scissors;
+                Value = Roshambo.InValid;
+                return Value;
             }
+            
         }
     }
 }

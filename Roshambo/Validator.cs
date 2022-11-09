@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using Roshambo;
+
 
 namespace Roshambo
 {
-    public class Validator
+    public static class Validator
     {
         public static bool GetYN()
         {
@@ -20,6 +20,40 @@ namespace Roshambo
                 return false;
             }
         }
+
+
+        //TryCatch attemt for Rock paper scissors input
+        //public static string GetRockPaperScissors(string input)
+        //{
+        //    Console.WriteLine("Please enter R P S ");
+            
+        //    bool isValid = true;
+        //    while(isValid)
+        //    try
+        //    { 
+        //        if (input == "r" || input == "rock")
+        //        {
+        //            return input;
+        //        }
+        //        else if (input == "p" || input == "paper")
+        //        {
+        //            return input;
+        //        }
+        //        else if (input == "s" || input == "scissors")
+        //        {
+        //            return input;
+        //        }
+        //    }
+        //   catch (ArgumentException)
+        //    {
+        //        input = "Invalid Choice entered please try again";
+        //            isValid = false;
+                
+        //    }
+        //    return input;
+        //}
+        
+
     }
 }
 
